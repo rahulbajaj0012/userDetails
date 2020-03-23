@@ -1,0 +1,42 @@
+<div class="user-details">
+    <div class="header-section">
+        <div class="count">
+            <span class="count-text">Total count :</span>
+            <span>{{totalCount}}</span>
+        </div>
+        <button class="add-button" [routerLink]="['/UserDetails/add']">Add</button>
+    </div>
+    <!--Columns Header-->
+    <div class="column-header">
+        <div class="{{column.classes}}" *ngFor="let column of tableSetting.columns;let i = index">
+            <span class="header-title">{{column.title}}</span>
+        </div>
+    </div>
+  
+    <!--Table Body-->
+    <div class="details-section">
+        <div *ngFor="let data of userDetails">
+            <div class="ui_size_col">
+                <span>{{data.name}}</span>
+            </div>
+            <div class="ui_size_col">
+                <span>{{data.phoneNumber | phone}}</span>
+            </div>
+            <div class="ui_size_col">
+            <span>{{data.email}}</span>    
+            </div>
+            <div class="ui_size_col">
+                <span>{{data.gender}}</span>    
+            </div>
+            <div class="ui_size_col">
+            <span>{{data.location}}</span>    
+            </div>
+            <div class="ui_size_col">
+            <span (click)="redirect(data)"><button class="edit-button">Edit</button></span>    
+            </div>
+            <div class="ui_size_col">
+             <span (click)="deleteValue(data)"><button class="delete-button">Delete</button></span>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,60 @@
+
+<div class="title">User details</div>
+<form name="form" [formGroup]="registerForm" (ngSubmit)="onSubmit()"  novalidate>
+    <div class="user-details" >
+        <!--Name -->
+        <div class="form-field">
+            <label class="left-label">Name <span class="asteric-mark">*</span>  </label>
+            <input [(ngModel)]="userInfo.name" class="user-input" formControlName="firstName" name="firstName" [ngClass]="{ 'is-invalid': userForm.firstName.touched && userForm.firstName.errors }" required/>
+            <div *ngIf="userForm.firstName.touched && userForm.firstName.errors" class="invalid-feedback">
+                <div *ngIf="userForm.firstName.errors.required" class="error-text">Name is required</div>
+            </div>
+        </div> 
+        <!--Phone number -->
+          <div class="form-field">
+            <label class="left-label">Phone Number <span class="asteric-mark">*</span>  </label>           
+            <input class="user-input" [(ngModel)]="userInfo.phoneNumber" formControlName="phoneNumber" name="phoneNumber" maxlength="10" OnlyNumber="true" [ngClass]="{ 'is-invalid': userForm.phoneNumber.touched && userForm.phoneNumber.invalid }" required/>
+            <div *ngIf="userForm.phoneNumber.touched && userForm.phoneNumber.invalid" class="invalid-feedback">
+                <div *ngIf="userForm.phoneNumber.errors.required" class="error-text">Phone number is required</div>
+            </div>
+        </div>
+        <!--Email id -->
+        <div class="form-field">
+            <label class="left-label">Email Id <span class="asteric-mark">*</span> </label>
+            <input  [(ngModel)]="userInfo.email" class="user-input" name="email"  formControlName="email" type="email" [ngClass]="{ 'is-invalid': userForm.email.touched && userForm.email.invalid }" />
+            <div *ngIf="userForm.email.touched && userForm.email.invalid" class="invalid-feedback">
+                <div *ngIf="userForm.email.errors.required" class="error-text">Email address is required</div>
+                <div *ngIf="userForm.email.invalid" class="error-text">Please enter correct email address</div>
+            </div>
+        </div>
+        <!--Gender -->
+        <div class="form-field">
+            <label class="left-label">Gender <span class="asteric-mark">*</span> </label>
+           
+            <select id="gender" name="gender" class="user-input gender-input" [(ngModel)]="userInfo.gender" formControlName="gender" [ngClass]="{ 'is-invalid': userForm.gender.touched && userInfo.gender == 'Select' }" >
+                <option *ngFor="let gender of genderlist" [ngValue]="gender.title">{{gender.title}}</option>
+            </select>
+   
+            <div *ngIf="userForm.gender.touched && userInfo.gender == 'Select'" class="invalid-feedback">
+                <div class="error-text">Gender is required</div>
+            </div>
+        </div>
+        <!--Location-->
+        <div class="form-field">
+            <label class="left-label">Location <span class="asteric-mark">*</span> </label>
+            <div *ngFor="let location of locations">
+
+                <input type="checkbox"  value="{{location}}" [checked]="userInfo.location.indexOf(location) >= 0"  name="locationField" 
+                (change)="updateCheckedLocations($event)" required>{{location}}<br>  
+            </div>   
+            <div class="error" *ngIf="userForm.location.errors?.required && isLocationSelected">
+                    <div class="error-text">Location is required</div> 
+            </div> 
+        </div>  
+        
+        <!--Submit-->
+    <button class="submit-button"  [disabled]="(!registerForm.dirty && !isLocationSelected) || !registerForm.valid || (userInfo.gender == 'Select')" [ngClass]="{ 'disabled': ((!registerForm.dirty && !isLocationSelected) ||  !registerForm.valid || (userInfo.gender == 'Select'))}" type="submit">Submit</button>
+    </div>
+</form>    
+  
+

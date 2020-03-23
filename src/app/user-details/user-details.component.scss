@@ -1,0 +1,58 @@
+.user-details{
+    .form-field{
+        display: block;
+        width: auto;
+        margin: 20px;
+        .left-label{
+            font-weight:700;
+        }
+        .user-input{
+            height: 20px;
+            display: block;
+            width: 250px;
+            padding: 6px 12px;
+            font-size: 14px;
+            line-height: 1.42857143;
+            color: #555;
+            background-color: #fff;
+            background-image: none;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+        .gender-input{
+            height: 36px;
+        }
+        .is-invalid{
+            border: 1px solid red;
+        }
+        .error-text{
+            color: red;
+            padding-top: 10px;
+        }
+        .asteric-mark{
+            color: red;
+        }
+    }
+   
+
+    .submit-button{
+        width: 100px;
+        height: 30px;
+        color: white;
+        border: none;
+        border-radius:4px;
+        background-color:#41a3f2;
+        margin-left:15px;
+        cursor: pointer;
+    }
+    .disabled{
+        opacity: 0.4;
+    }
+}
+.title{
+    font-size: 20px;
+    font-weight: 700;
+    margin-left: 20px;
+    margin-top: 20px;
+}
